@@ -1,4 +1,16 @@
 {% extends "base.html" %}
 
-<h1>Tela de cadatro</h1>
-<p>Dentro do html</p>
+{% block body %}
+<form class="row row-cols-lg-auto g-3 align-items-center" method="POST" action="{% url 'cadastro' %}">{% csrf_token %}
+    <div class="col-12">
+        <div class="input-group mt-3 mb-3 ">
+                <input type="text" class="form-control" placeholder="Nome do autor" aria-label="Nome do autor" aria-describedby="button-addon2" name="nome">
+        </div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" id="button-addon2">Cadastrar</button>
+    </div>
+</form>
+
+
+{% endblock %}

@@ -1,6 +1,16 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Autor
+import json
+from django.contrib import messages
 
 def cadastro(request):
-    return render(request, 'cadastro.html')
+    if request.method == 'GET':
+        return render(request, 'cadastro.html')
+    elif request.method == "POST":
+        nome = request.POST.get('nome')
+        autor = Autor(nome=nome)
+        autor.save()
+        messages.success(request, "Cadastro realizado com sucesso!")
+        return redirect("/autor/cadastro")
+
