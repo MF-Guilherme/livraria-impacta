@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{%block activelivros%}active{%endblock%}
+{% block body %}
+<div class="container">
+    <div class="d-flex justify-content-center mt-3">
+        <form method="POST" class="row g-3">{% csrf_token %}
+            <div class="col-12">
+                <label for="inputTitulo" class="form-label">Titulo</label>
+                <input type="text" class="form-control" id="inputTitulo" placeholder="Título do livro" name="titulo">
+            </div>
+            <div class="col-9">
+                <label for="inputAutor" class="form-label">Autor</label>
+                <select id="inputAutor" class="form-select" name="autor">
+                    <option disabled="true" selected>Selecione o autor do livro</option>
+                    {% for autor in autores %}
+                        <option value="{{ autor.id }}">{{autor}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="inputPublicacao" class="form-label">Publicação</label>
+                <input type="text" class="form-control" id="inputPublicacao" placeholder="Ano de Publicação" name="publicacao">
+            </div>
+            <div class="col-6">
+                <label for="inputGenero" class="form-label">Gênero</label>
+                <input type="text" class="form-control" id="inputGenero" placeholder="Gênero literário" name="genero">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
