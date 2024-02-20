@@ -6,7 +6,8 @@ from django.contrib import messages
 
 def cadastro(request):
     if request.method == 'GET':
-        return render(request, 'cadastro.html')
+        autores = Autor.objects.all()
+        return render(request, 'cadastro.html', {'autores': autores})
     elif request.method == "POST":
         nome = request.POST.get('nome')
         autor = Autor(nome=nome)
