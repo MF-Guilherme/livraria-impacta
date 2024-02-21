@@ -23,7 +23,7 @@
                     <td class="text-center">{{livro.autor}}</td>
                     <td class="text-center">{{livro.publicacao}}</td>
                     <td class="text-center">{{livro.genero}}</td>
-                    <td><a href="#">Editar</a></td> <!-- Adicionar link para editar -->
+                    <td><a href="{% url 'editar_livro' livro.id%}">Editar</a></td>
                     <td><a href="#">Excluir</a></td> <!-- Adicionar link para excluir -->
                 {% endfor %}
                </tr>
@@ -31,6 +31,4 @@
           </table>
     </div>
 </div>
-
-
 {% endblock %}

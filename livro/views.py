@@ -18,6 +18,23 @@ def cadastro(request):
         messages.success(request, "Livro cadastrado com sucesso!")
         return redirect("/livros/")
 
+
 def listar(request):
     livros = Livro.objects.all()
     return render(request, 'livros.html', {'livros': livros})
+
+
+def editar_livro(request, id_livro):
+    if request.method == 'GET':
+        livro = Livro.objects.filter(id=id_livro)[0]
+        autores = Autor.objects.all()
+        return render(request, 'editar_livro.html', {'livro': livro, 'autores': autores})
+    elif request.method == 'POST':
+        livro = Livro.objects.filter(id=id_livro)[0]
+        livro.titulo = request.POST.get('titulo')
+        livro.autor_id = int(request.POST.get('autor'))
+        livro.publicacao = request.POST.get('publicacao')
+        livro.genero = request.POST.get('genero')
+        livro.save()
+        messages.success(request, "Alterações salvas com sucesso!")
+        return redirect('/livros/')
