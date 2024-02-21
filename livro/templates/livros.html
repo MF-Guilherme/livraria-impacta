@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{%block activelivros%}active{%endblock%}
+{% block body %}
+<div class="container mt-3">
+    <a href="/livros/cadastro_livros/"><button type="text" class="btn btn-primary">Cadastrar novo livro</button></a><br>
+    <div class="d-flex justify-content-center mt-3">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Título</th>
+                    <th class="text-center" scope="col">Autor</th>
+                    <th class="text-center" scope="col">Ano de Publicação</th>
+                    <th class="text-center" scope="col">Gênero</th>
+                    <th class="text-center" scope="col"></th>
+                    <th class="text-center" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livro in livros %}
+                <tr>
+                    <td>{{livro}}</td>
+                    <td class="text-center">{{livro.autor}}</td>
+                    <td class="text-center">{{livro.publicacao}}</td>
+                    <td class="text-center">{{livro.genero}}</td>
+                    <td><a href="#">Editar</a></td> <!-- Adicionar link para editar -->
+                    <td><a href="#">Excluir</a></td> <!-- Adicionar link para excluir -->
+                {% endfor %}
+               </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -16,6 +16,8 @@ def cadastro(request):
         livro = Livro(titulo=titulo, autor_id=autor_id, publicacao=publicacao, genero=genero)
         livro.save()
         messages.success(request, "Livro cadastrado com sucesso!")
-        return redirect("/")
+        return redirect("/livros/")
 
-
+def listar(request):
+    livros = Livro.objects.all()
+    return render(request, 'livros.html', {'livros': livros})

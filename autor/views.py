@@ -13,5 +13,5 @@ def cadastro(request):
         autor = Autor(nome=nome)
         autor.save()
         messages.success(request, "Cadastro realizado com sucesso!")
-        return redirect("/autor/cadastro")
+        return redirect("/autores/cadastro")
 
