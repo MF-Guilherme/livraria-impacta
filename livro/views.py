@@ -16,8 +16,6 @@ def cadastro(request):
         livro = Livro(titulo=titulo, autor_id=autor_id, publicacao=publicacao, genero=genero)
         livro.save()
         messages.success(request, "Livro cadastrado com sucesso!")
-        return redirect("/livros/")
+        return redirect("/")
 
 
-def index(request):
-    return render(request, 'index.html')
