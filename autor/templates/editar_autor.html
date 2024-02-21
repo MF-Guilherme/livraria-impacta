@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{%block activeautores%}active{%endblock%}
+{% block body %}
+<div class="container">
+    <form class="row row-cols-lg-auto g-3 align-items-center" method="POST" action="{% url 'editar_autor' autor.id%}">{% csrf_token %}
+        <div class="col-12">
+            <div class="input-group mt-3 mb-3">
+                    <input type="text" class="form-control" placeholder="Novo nome" aria-label="Novo nome" aria-describedby="button-addon2" name="nome" value="{{autor}}">
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit" id="button-addon2">Atualizar</button>
+        </div>
+    </form>
+</div>
+{%endblock%}
