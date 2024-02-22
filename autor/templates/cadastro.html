@@ -14,7 +14,7 @@
 </div>
 
 <div class="d-flex justify-content-center">
-    <div class="container w-50 mt-3">
+    <div class="container w-75 mt-3">
         {% if autores %}
         <h2>Autores cadastrados:</h2>
         <ul class="list-group">
@@ -28,6 +28,11 @@
             </li>
             {% endfor %}
         </ul>
+        {% else %}
+        <div class="text-center">
+            <h1>Nenhum autor cadatrado</h1>
+            <h4>Cadastre um novo autor digitando o nome e clicando no botão acima</h4>
+        </div>
         {% endif %}
     </div>
 </div>
