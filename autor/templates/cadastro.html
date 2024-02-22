@@ -23,8 +23,8 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 {{ autor }}
                 <div>
-                    <a href="{% url 'editar_autor' autor.id%}">Editar</a>
-                    <button type="button" class="btn btn-link ml-auto">Excluir</button>
+                    <a style="margin-right: 5px;" href="{% url 'editar_autor' autor.id%}"><button class="btn btn-primary py-1 px-1">Editar</button></a>
+                    <a href="{% url 'excluir_autor' autor.id%}"><button class="btn btn-danger py-1 px-1">Excluir</button></a>
                 </div>
             </li>
             {% endfor %}

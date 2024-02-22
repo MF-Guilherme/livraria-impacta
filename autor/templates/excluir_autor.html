@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{%block activeautores%}active{%endblock%}
+{% block body %}
+<div class="container">
+    <form class="row row-cols-lg-auto g-3 align-items-center" method="POST" action="{% url 'excluir_autor' autor.id%}">{% csrf_token %}
+        <div class="col-12">
+            <div class="input-group mt-3 mb-3">
+                <div class="d-flex flex-column">
+                    <p>Tem certeza que deseja excluir o(a) autor(a) {{ autor }}?</p>
+                    <div>
+                        <button class="btn btn-danger" type="submit" id="excluir">Excluir</button>
+                        <a href="/autores/cadastro"><button class="btn btn-primary" type="button" id="cancelar">Cancelar</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
