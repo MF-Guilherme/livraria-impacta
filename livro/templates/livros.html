@@ -13,7 +13,6 @@
                     <th class="text-center" scope="col">Ano de Publicação</th>
                     <th class="text-center" scope="col">Gênero</th>
                     <th class="text-center" scope="col"></th>
-                    <th class="text-center" scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -23,8 +22,10 @@
                     <td class="text-center">{{livro.autor}}</td>
                     <td class="text-center">{{livro.publicacao}}</td>
                     <td class="text-center">{{livro.genero}}</td>
-                    <td><a href="{% url 'editar_livro' livro.id%}">Editar</a></td>
-                    <td><a href="#">Excluir</a></td> <!-- Adicionar link para excluir -->
+                    <td>
+                        <a style="margin-right: 10px;" href="{% url 'editar_livro' livro.id%}"><button class="btn btn-primary py-1 px-1">Editar</button></a>
+                        <a href="{% url 'excluir_livro' livro.id%}"><button class="btn btn-danger py-1 px-1">Excluir</button></a>
+                    </td>
                 {% endfor %}
                </tr>
             </tbody>

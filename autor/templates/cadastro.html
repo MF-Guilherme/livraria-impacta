@@ -2,14 +2,13 @@
 {%block activeautores%}active{%endblock%}
 {% block body %}
 <div class="container">
-    <form class="row row-cols-lg-auto g-3 align-items-center" method="POST" action="{% url 'cadastro' %}">{% csrf_token %}
-        <div class="col-12">
-            <div class="input-group mt-3 mb-3">
+    <h5 class="mt-3 mb-0">Cadastro de novo autor:</h5>
+    <form method="POST" action="{% url 'cadastro' %}">{% csrf_token %}
+        <div class="col-12 w-50">
+            <div class="input-group mt-1 mb-3">
                     <input value="{{autor}}" type="text" class="form-control" placeholder="Nome do autor" aria-label="Nome do autor" aria-describedby="button-addon2" name="nome">
+                    <button class="btn btn-primary" type="submit" id="button-addon2">Cadastrar</button>
             </div>
-        </div>
-        <div class="col-12">
-            <button class="btn btn-primary" type="submit" id="button-addon2">Cadastrar</button>
         </div>
     </form>
 </div>

@@ -38,3 +38,14 @@ def editar_livro(request, id_livro):
         livro.save()
         messages.success(request, "Alterações salvas com sucesso!")
         return redirect('/livros/')
+
+
+def excluir_livro(request, id_livro):
+    if request.method == 'GET':
+        livro = Livro.objects.filter(id=id_livro)[0]
+        return render(request, 'excluir_livro.html', {'livro': livro})
+    elif request.method == 'POST':
+        livro = Livro.objects.get(id=id_livro)
+        livro.delete()
+        messages.success(request, "Cadastro excluído com sucesso!")
+        return redirect('/livros/')
