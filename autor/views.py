@@ -26,3 +26,13 @@ def editar_autor(request, id_autor):
         autor.save()
         messages.success(request, "Cadastro atualizado com sucesso!")
         return redirect("/autores/cadastro")
+
+def excluir_autor(request, id_autor):
+    if request.method == 'GET':
+        autor = Autor.objects.filter(id=id_autor)[0]
+        return render(request, 'excluir_autor.html', {'autor': autor})
+    elif request.method == 'POST':
+        autor = Autor.objects.filter(id=id_autor)[0]
+        autor.delete()
+        messages.success(request, "Cadastro excluído com sucesso!")
+        return redirect("/autores/cadastro")
