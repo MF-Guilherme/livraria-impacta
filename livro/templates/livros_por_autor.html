@@ -4,9 +4,6 @@
 {% block body %}
 <div class="container mt-3">
     <div class="row">
-        <div class="col-sm-6">
-            <a href="/livros/cadastro_livros/" class="btn btn-primary">Cadastrar novo livro</a>
-        </div>
         <div class="col-sm-6 d-flex justify-content-end align-items-end">
             <select id="inputAutor" class="form-select w-50" name="autor">
                 <option disabled="true" selected>Filtrar por autor</option>
@@ -59,6 +56,5 @@
         window.location.href = url;
     });
 </script>
-
 
 {% endblock %}

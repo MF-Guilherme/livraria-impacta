@@ -21,7 +21,8 @@ def cadastro(request):
 
 def listar(request):
     livros = Livro.objects.all()
-    return render(request, 'livros.html', {'livros': livros})
+    autores = Autor.objects.all()
+    return render(request, 'livros.html', {'livros': livros, 'autores': autores})
 
 
 def editar_livro(request, id_livro):
@@ -49,3 +50,9 @@ def excluir_livro(request, id_livro):
         livro.delete()
         messages.success(request, "Cadastro excluído com sucesso!")
         return redirect('/livros/')
+
+
+def livros_por_autor(request, id_autor):
+    livros = Livro.objects.filter(autor=id_autor)
+    autores = Autor.objects.all()
+    return render(request, 'livros_por_autor.html', {'livros': livros, 'autores': autores})
