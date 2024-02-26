@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {%block body%}
-<h1>Bem-vindo á Livraria Impacta</h1>
-<h2>Aqui você pode cadastrar e visualizar autores e livros</h2>
-<p>Navegue pelos links na barra de navegação acima e divirta-se</p>
+    <div class="container mt-3 d-flex justify-content-center align-items-center flex-column">
+        <h1>Bem-vindo á Livraria Impacta</h1>
+        <h2>Aqui você pode cadastrar e visualizar autores e livros</h2>
+        <p>Navegue pelos links da barra de navegação acima e divirta-se</p>
+        <img src="{% static 'img/pngwing.png' %}" alt="logo" class="img-fluid w-75">
+    </div>
 {%endblock%}

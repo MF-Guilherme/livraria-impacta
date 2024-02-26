@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 {%block activeautores%}active{%endblock%}
 {% block body %}
 <div class="container">
-    <h5 class="mt-3 mb-0">Cadastro de novo autor:</h5>
+    <h5 class="mt-3 mb-0">Cadastre um novo autor:</h5>
     <form method="POST" action="{% url 'cadastro' %}">{% csrf_token %}
         <div class="col-12 w-50">
             <div class="input-group mt-1 mb-3">
@@ -29,9 +30,11 @@
             {% endfor %}
         </ul>
         {% else %}
-        <div class="text-center">
-            <h1>Nenhum autor cadatrado</h1>
-            <h4>Cadastre um novo autor digitando o nome e clicando no botão acima</h4>
+        <div class="container mt-3 d-flex justify-content-center align-items-center flex-column">
+            <h1>Nenhum autor cadastrado</h1>
+            <h2>Cadastre o autor do seu livro favorito para começar!</h2>
+            <p>Em seguida navegue até a sessão de livros e cadastre seu livro predileto</p>
+            <img src="{% static 'img/pngwing.png' %}" alt="logo" class="img-fluid w-75">
         </div>
         {% endif %}
     </div>
