@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {%block activelivros%}active{%endblock%}
 {% block body %}
@@ -7,6 +8,7 @@
         <div class="col-sm-6">
             <a href="/livros/cadastro_livros/" class="btn btn-primary">Cadastrar novo livro</a>
         </div>
+        {% if livros %}
         <div class="col-sm-6 d-flex justify-content-end align-items-end">
             <select id="inputAutor" class="form-select w-50" name="autor">
                 <option disabled="true" selected>Filtrar por autor</option>
@@ -38,8 +40,10 @@
                         <td class="text-center">{{livro.publicacao}}</td>
                         <td class="text-center">{{livro.genero}}</td>
                         <td>
-                            <a href="{% url 'editar_livro' livro.id%}" class="btn btn-primary py-1 px-1">Editar</a>
-                            <a href="{% url 'excluir_livro' livro.id%}" class="btn btn-danger py-1 px-1">Excluir</a>
+                            <div class="d-flex justify-content-center">
+                                <a href="{% url 'editar_livro' livro.id%}" class="btn btn-primary py-1 px-1 me-1">Editar</a>
+                                <a href="{% url 'excluir_livro' livro.id%}" class="btn btn-danger py-1 px-1 ms-1">Excluir</a>
+                            </div>
                         </td>
                     </tr>
                     {% endfor %}
@@ -47,6 +51,15 @@
             </table>
         </div>
     </div>
+    {% else %}
+    <div class="container mt-3 d-flex justify-content-center align-items-center flex-column">
+        <h1>Nenhum livro cadastrado</h1>
+        <h2>Para cadastrar um livro, primeiro navegue até a sessão "Autores" e cadastre um autor</h2>
+        <p>Em seguida volte aqui e clique no botão (Cadastrar novo livro) para iniciar sua livraria pessoal</p>
+        <img src="{% static 'img/pngwing.png' %}" alt="logo" class="img-fluid w-75">
+    </div>
+    {% endif %}
+
 </div>
 
 <script>
