@@ -20,7 +20,7 @@ def cadastro(request):
 
 
 def listar(request):
-    livros = Livro.objects.all()
+    livros = Livro.objects.all().order_by('titulo')
     autores = Autor.objects.all()
     return render(request, 'livros.html', {'livros': livros, 'autores': autores})
 
@@ -53,6 +53,6 @@ def excluir_livro(request, id_livro):
 
 
 def livros_por_autor(request, id_autor):
-    livros = Livro.objects.filter(autor=id_autor)
+    livros = Livro.objects.filter(autor=id_autor).order_by('titulo')
     autores = Autor.objects.all()
     return render(request, 'livros_por_autor.html', {'livros': livros, 'autores': autores})
