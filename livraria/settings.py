@@ -72,7 +72,10 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '', #3306 padrão
+        'OPTIONS': {
+            'unix_socket': '/opt/lampp/var/mysql/mysql.sock',
+        },
     }
 }
 
