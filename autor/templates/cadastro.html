@@ -4,15 +4,17 @@
 {% block body %}
 <div class="container">
     <h5 class="mt-3 mb-0">Cadastre um novo autor:</h5>
-    <form method="POST" action="{% url 'cadastro' %}">{% csrf_token %}
+    <form id="autorForm" method="POST" action="{% url 'cadastro' %}">{% csrf_token %}
         <div class="col-12 w-50">
             <div class="input-group mt-1 mb-3">
-                    <input value="{{autor}}" type="text" class="form-control" placeholder="Nome do autor" aria-label="Nome do autor" aria-describedby="button-addon2" name="nome">
-                    <button class="btn btn-primary" type="submit" id="button-addon2">Cadastrar</button>
+                <input value="{{autor}}" type="text" class="form-control" placeholder="Nome do autor" aria-label="Nome do autor" aria-describedby="button-addon2" name="nome" id="nome">
+                <button class="btn btn-primary" type="submit" id="button-addon2">Cadastrar</button>
             </div>
+            <div id="nomeError" class="text-danger"></div> <!-- Aqui será exibido o erro -->
         </div>
     </form>
 </div>
+
 
 <div class="d-flex justify-content-center">
     <div class="container w-75 mt-3">
@@ -39,5 +41,28 @@
         {% endif %}
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector("#autorForm").addEventListener("submit", function(event) {
+            // Obtém o valor do campo 'nome' removendo espaços em branco no início e no fim
+            var nome = document.querySelector("#nome").value.trim();
+
+            // Remove mensagens de erro anteriores
+            document.querySelector("#nomeError").innerHTML = "";
+
+            // Verifica se o campo está vazio ou contém apenas espaços em branco
+            if (!nome) {
+                document.querySelector("#nomeError").innerHTML = "O campo nome não pode estar vazio.";
+                event.preventDefault(); // Impede o envio do formulário
+            } else if (nome.length < 3) {
+                document.querySelector("#nomeError").innerHTML = "O nome deve ter no mínimo 3 caracteres.";
+                event.preventDefault(); // Impede o envio do formulário
+            }
+        });
+    });
+</script>
+
+
 
 {% endblock %}
