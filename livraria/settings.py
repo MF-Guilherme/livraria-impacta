@@ -1,4 +1,5 @@
 from pathlib import Path
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -65,19 +66,32 @@ WSGI_APPLICATION = 'livraria.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'livraria_impacta',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '', #3306 padrão
-        'OPTIONS': {
-            'unix_socket': '/opt/lampp/var/mysql/mysql.sock',
-        },
+# Detectando o ambiente de execução
+database_engine = os.getenv('DATABASE_ENGINE', 'mysql')
+
+# Configurando o 'default' do DATABASES com base no ambiente
+if database_engine == 'mysql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'livraria_impacta',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '', #3306 padrão
+            'OPTIONS': {
+                'unix_socket': '/opt/lampp/var/mysql/mysql.sock',
+            },
+        }
     }
-}
+elif database_engine == 'postgresql':
+    DATABASES = {
+    'default': dj_database_url.config(
+        default='postgresql://livraria_impacta_owner:Vgxu2nlEGC1r@ep-winter-snow-a5gnpn1h.us-east-2.aws.neon.tech/livraria_impacta?sslmode=require'
+        )   
+    }
+else:
+    raise ValueError("DATABASE_ENGINE desconhecido: {}".format(database_engine))
 
 
 # Password validation
