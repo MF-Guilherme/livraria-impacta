@@ -42,5 +42,28 @@
       });
     </script>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          document.querySelectorAll(".form-validation").forEach(function(form) {
+              form.addEventListener("submit", function(event) {
+                  var nomeInput = form.querySelector(".form-control");
+
+                  // Remove mensagens de erro anteriores
+                  form.querySelector(".error-message").innerHTML = "";
+
+                  var nome = nomeInput.value.trim();
+
+                  if (!nome) {
+                      form.querySelector(".error-message").innerHTML = "O campo nome não pode estar vazio.";
+                      event.preventDefault();
+                  } else if (nome.length < 3) {
+                      form.querySelector(".error-message").innerHTML = "O nome deve ter no mínimo 3 caracteres.";
+                      event.preventDefault();
+                  }
+              });
+          });
+      });
+    </script>
+
 </body>
 </html>
