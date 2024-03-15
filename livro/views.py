@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 def cadastro(request):
     if request.method == 'GET':
-        autores = Autor.objects.all()
+        autores = Autor.objects.all().order_by('nome')
         return render(request, 'cadastro_livros.html', {'autores': autores})
     elif request.method == 'POST':
         titulo = request.POST.get('titulo')
