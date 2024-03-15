@@ -21,7 +21,7 @@ def cadastro(request):
 
 def listar(request):
     livros = Livro.objects.all().order_by('titulo')
-    autores = Autor.objects.all()
+    autores = Autor.objects.all().order_by('nome')
     return render(request, 'livros.html', {'livros': livros, 'autores': autores})
 
 
