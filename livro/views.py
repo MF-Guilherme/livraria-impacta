@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .models import Livro 
 from autor.models import Autor
@@ -20,9 +21,16 @@ def cadastro(request):
 
 
 def listar(request):
-    livros = Livro.objects.all().order_by('titulo')
+    livros_list = Livro.objects.all().order_by('titulo')
     autores = Autor.objects.all().order_by('nome')
-    return render(request, 'livros.html', {'livros': livros, 'autores': autores})
+    
+    livros_por_pagina = 5
+
+    paginator = Paginator(livros_list, livros_por_pagina)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'livros.html', {'page_obj': page_obj, 'autores': autores})
 
 
 def editar_livro(request, id_livro):
